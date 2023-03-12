@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Function: plm_from_string
-//   Creates a polymath number from a string.
+// Function: plm_from_base10_string
+//   Creates a polymath number from a base 10 string.
 //
 // Parameters:
 //   n - The string to convert.
 //
 // Returns:
 //   A polymath number.
-struct plm_number plm_from_string(const char *n_in) {
+struct plm_number plm_from_base10_string(const char *n_in) {
   // Copy the string, so that we can modify it.
   char *n = malloc(strlen(n_in) + 1);
   strncpy(n, n_in, strlen(n_in) + 1);
