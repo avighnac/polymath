@@ -1,6 +1,3 @@
-#ifndef _plm_from_string_h_
-#define _plm_from_string_h_
-
 #include <polymath.h>
 #include <stdlib.h>
 #include <string.h>
@@ -96,5 +93,3 @@ struct plm_number plm_from_string(const char *n_in) {
   free(n);
   return number;
 }
-
-#endif

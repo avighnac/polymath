@@ -1,6 +1,3 @@
-#ifndef _plm_free_h_
-#define _plm_free_h_
-
 #include <polymath.h>
 #include <stdlib.h>
 
@@ -13,5 +10,3 @@
 // Returns:
 //   Nothing.
 void plm_free(struct plm_number *n) { free(n->contents); }
-
-#endif

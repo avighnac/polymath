@@ -1,15 +1,15 @@
 #include <polymath.h>
 #include <stdlib.h>
 
-// Function: plm_from_int
-//   Converts an integer to a polymath number.
+// Function: plm_from_long_long
+//   Converts a long long to a polymath number.
 //
 // Parameters:
-//   n - The integer to convert.
+//   n - The long long to convert.
 //
 // Returns:
 //   struct plm_number - The polymath number.
-struct plm_number plm_from_int(int n) {
+struct plm_number plm_from_long_long(long long n) {
   struct plm_number num;
 
   num.sign = 1;
