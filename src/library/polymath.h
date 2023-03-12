@@ -2,7 +2,7 @@
 #define _polymath_h_
 
 struct plm_number {
-  char sign;
+  int sign; // 0 for positive, 1 for negative.
   unsigned long long number_of_decimal_digits;
 
   // The number is stored as a vector of unsigned long longs.

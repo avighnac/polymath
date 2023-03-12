@@ -12,11 +12,11 @@
 struct plm_number plm_from_long_long(long long n) {
   struct plm_number num;
 
-  num.sign = 1;
+  num.sign = 0;
   num.number_of_decimal_digits = 0;
 
   if (n < 0) {
-    num.sign = 0;
+    num.sign = 1;
     n = -n;
   }
 

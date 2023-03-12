@@ -22,7 +22,7 @@ struct plm_number plm_from_string(const char *n_in) {
 
   // Declare the number, along with its default values.
   struct plm_number number;
-  number.sign = 1;
+  number.sign = 0;
   number.number_of_decimal_digits = 0;
   number.contents_length = 0;
 
@@ -38,7 +38,7 @@ struct plm_number plm_from_string(const char *n_in) {
 
   // Deal with negative inputs.
   if (*n == '-') {
-    number.sign = 0;
+    number.sign = 1;
     memmove(n, n + 1, strlen(n));
   }
 
