@@ -27,6 +27,7 @@ struct plm_number plm_from_base10_string(const char *n_in) {
 
   // Edge case: "00000"
   if (*s_c == 0) {
+    free(n);
     return plm_from_int(0);
   }
 
