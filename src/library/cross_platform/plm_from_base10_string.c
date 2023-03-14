@@ -11,13 +11,48 @@
 // Returns:
 //   A polymath number.
 struct plm_number plm_from_base10_string(const char *n_in) {
+  if (*n_in == '\0') {
+    return plm_from_int(0);
+  }
+
   // Copy the string, so that we can modify it.
   char *n = malloc(strlen(n_in) + 1);
-  strncpy(n, n_in, strlen(n_in) + 1);
+  strcpy(n, n_in);
 
-  if (*n == '\0') {
-    free(n);
+  // Remove leading zeroes.
+  char *s_c = n;
+  while (*s_c == '0') {
+    ++s_c;
+  }
+
+  // Edge case: "00000"
+  if (*s_c == 0) {
     return plm_from_int(0);
+  }
+
+  // Edge case: "000.1672"
+  // i.e. whole part is 0
+  if (*s_c == '.') {
+    --s_c;
+  }
+
+  memmove(n, s_c, strlen(s_c) + 1);
+
+  if (strchr(s_c, '.') != NULL) {
+    // Remove trailing zeroes.
+    s_c = n + strlen(n) - 1;
+
+    while (*s_c == '0') {
+      --s_c;
+    }
+
+    // Edge case: "1672.00000"
+    // i.e. decimal part is 0
+    if (*s_c == '.') {
+      --s_c;
+    }
+
+    *(s_c + 1) = '\0';
   }
 
   // Declare the number, along with its default values.

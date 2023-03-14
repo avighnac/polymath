@@ -13,7 +13,7 @@ set(cross_platform_sources
     cross_platform/plm_from_long.c
     cross_platform/plm_from_long_long.c
     cross_platform/plm_from_unsigned_long_long.c
-    cross_platform/plm_from_string.c
+    cross_platform/plm_from_base10_string.c
 
     cross_platform/plm_to_base10_string.c
 

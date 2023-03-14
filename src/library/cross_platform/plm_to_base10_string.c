@@ -38,12 +38,24 @@ char *plm_to_base10_string(struct plm_number *n) {
   ull decimal_parts =
       n->number_of_decimal_digits / 19 + (n->number_of_decimal_digits % 19 > 0);
   ull decimal_digits = n->number_of_decimal_digits;
-  ull part = 0;
+  ull part = 0, part_i = 0;
+  int count = 0;
   for (ull i = 0; i < decimal_parts; ++i) {
-    part = n->contents[n->contents_length - i - 1];
-    while (part && decimal_digits--) {
-      str[ptr--] = '0' + part % 10;
-      part /= 10;
+    count = 0;
+    part_i = n->contents_length - i - 1;
+    part = n->contents[part_i];
+    if (part_i) {
+      while (count < 19 && decimal_digits--) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+        ++count;
+      }
+    } else {
+      while (decimal_digits--) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+        ++count;
+      }
     }
   }
 
@@ -53,17 +65,34 @@ char *plm_to_base10_string(struct plm_number *n) {
   }
 
   // Deal with the remaining digits of the remaining part.
-  while (part) {
-    str[ptr--] = '0' + part % 10;
-    part /= 10;
+  if (decimal_parts) {
+    if (!part_i) {
+      while (part) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+      }
+    } else {
+      for (int i = 0; i < 19 - count; ++i) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+      }
+    }
   }
 
   // Add the rest of the digits.
   for (ull i = decimal_parts; i < n->contents_length; i++) {
-    part = n->contents[n->contents_length - i - 1];
-    while (part) {
-      str[ptr--] = '0' + part % 10;
-      part /= 10;
+    ull index = n->contents_length - i - 1;
+    part = n->contents[index];
+    if (index) {
+      for (int i = 0; i < 19; ++i) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+      }
+    } else {
+      while (part) {
+        str[ptr--] = '0' + part % 10;
+        part /= 10;
+      }
     }
   }
 
