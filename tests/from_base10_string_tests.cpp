@@ -5,8 +5,7 @@ extern "C" {
 
 // Test case 1: Test with less than 20 digits
 TEST(from_base10_string_tests, less_than_20_digits) {
-  char *input = "123";
-  plm_number result = plm_from_base10_string(input);
+  plm_number result = plm_from_base10_string("123");
   ASSERT_EQ(result.sign, 0);
   ASSERT_EQ(result.number_of_decimal_digits, 0);
   ASSERT_EQ(result.contents_length, 1);
@@ -16,8 +15,8 @@ TEST(from_base10_string_tests, less_than_20_digits) {
 
 // Test case 2: Test with more than 20 digits
 TEST(from_base10_string_tests, more_than_20_digits) {
-  char *input = "316398127368712683612983619783612329871263";
-  plm_number result = plm_from_base10_string(input);
+  plm_number result =
+      plm_from_base10_string("316398127368712683612983619783612329871263");
   ASSERT_EQ(result.sign, 0);
   ASSERT_EQ(result.number_of_decimal_digits, 0);
   ASSERT_EQ(result.contents_length, 3);
@@ -28,8 +27,7 @@ TEST(from_base10_string_tests, more_than_20_digits) {
 }
 
 TEST(from_base10_string_tests, small_decimal) {
-  char *input = "3.1415";
-  plm_number result = plm_from_base10_string(input);
+  plm_number result = plm_from_base10_string("3.1415");
   ASSERT_EQ(result.sign, 0);
   ASSERT_EQ(result.number_of_decimal_digits, 4);
   ASSERT_EQ(result.contents_length, 1);
