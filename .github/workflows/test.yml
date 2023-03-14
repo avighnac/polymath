@@ -1,0 +1,25 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-on-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install valgrind
+      run: |
+      sudo apt-get update
+      sudo apt-get install valgrind
+    - name: Build library and tests
+      run: |
+        cmake -DENABLE_TESTS=ON -S . -B build
+        cd build
+        make
+    - name: Run tests with valgrind
+      run: |
+        valgrind --error-exitcode=1 --leak-check=full --track-origins=yes ./build/tests/polymath_tests

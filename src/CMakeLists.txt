@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(polymath)
 
 enable_language(C)
-enable_language(ASM_NASM)
+# enable_language(ASM_NASM)
 
 # Enable all warnings
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic")
