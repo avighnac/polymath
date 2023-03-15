@@ -33,14 +33,14 @@ set(include_directories
 # if (UNIX AND NOT APPLE)
 #     set(cross_platform_sources ${linux_sources})
 # endif()
-add_library(objlib OBJECT ${cross_platform_sources})
-set_property(TARGET objlib PROPERTY POSITION_INDEPENDENT_CODE 1)
-target_include_directories(objlib PRIVATE ${include_directories})
+add_library(polymath_objlib OBJECT ${cross_platform_sources})
+set_property(TARGET polymath_objlib PROPERTY POSITION_INDEPENDENT_CODE 1)
+target_include_directories(polymath_objlib PRIVATE ${include_directories})
 
 # Create the static library
-add_library(polymath_static STATIC $<TARGET_OBJECTS:objlib>)
+add_library(polymath_static STATIC $<TARGET_OBJECTS:polymath_objlib>)
 set_target_properties(polymath_static PROPERTIES OUTPUT_NAME polymath)
 
 # Create the shared library
-# add_library(polymath_shared SHARED $<TARGET_OBJECTS:objlib>)
+# add_library(polymath_shared SHARED $<TARGET_OBJECTS:polymath_objlib>)
 # set_target_properties(polymath_shared PROPERTIES OUTPUT_NAME polymath)
