@@ -27,6 +27,10 @@ void plm_free(struct plm_number *n);
 /// once you're done with it.
 char *plm_to_base10_string(struct plm_number *n);
 
+/// @brief Adds two whole polymath numbers and returns the result as a pointer
+/// to a polymath number.
+/// @param a The first polymath number to add.
+/// @param b The second polymath number to add.
 struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b);
 
 #endif

@@ -21,8 +21,8 @@ TEST(from_base10_string_tests, more_than_20_digits) {
   ASSERT_EQ(result.number_of_decimal_digits, 0);
   ASSERT_EQ(result.contents_length, 3);
   ASSERT_EQ(result.contents[0], 3163);
-  ASSERT_EQ(result.contents[1], 9812736871268361298);
-  ASSERT_EQ(result.contents[2], 3619783612329871263);
+  ASSERT_EQ(result.contents[1], 9812736871268361298ULL);
+  ASSERT_EQ(result.contents[2], 3619783612329871263ULL);
   plm_free(&result);
 }
 

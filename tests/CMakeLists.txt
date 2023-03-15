@@ -26,6 +26,7 @@ endif()
 set(test_sources
     from_base10_string_tests.cpp
     to_base10_string_tests.cpp
+    add_whole.cpp
 )
 
 add_executable(${PROJECT_NAME} ${test_sources})
