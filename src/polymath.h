@@ -10,11 +10,11 @@ struct plm_number {
   unsigned long long contents_length;
 };
 
-struct plm_number plm_from_int(int n);
-struct plm_number plm_from_long(long n);
-struct plm_number plm_from_long_long(long long n);
-struct plm_number plm_from_unsigned_long_long(unsigned long long n);
-struct plm_number plm_from_base10_string(const char *n);
+struct plm_number *plm_from_int(int n);
+struct plm_number *plm_from_long(long n);
+struct plm_number *plm_from_long_long(long long n);
+struct plm_number *plm_from_unsigned_long_long(unsigned long long n);
+struct plm_number *plm_from_base10_string(const char *n);
 
 /// @brief Frees the memory allocated to a polymath number.
 /// @param n The polymath number to free, passed as a pointer.

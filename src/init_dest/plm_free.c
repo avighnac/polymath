@@ -9,4 +9,7 @@
 //
 // Returns:
 //   Nothing.
-void plm_free(struct plm_number *n) { free(n->contents); }
+void plm_free(struct plm_number *n) {
+  free(n->contents);
+  free(n);
+}

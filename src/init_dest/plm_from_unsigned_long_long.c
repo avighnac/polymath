@@ -9,18 +9,18 @@
 //
 // Returns:
 //   struct plm_number - The polymath number.
-struct plm_number plm_from_unsigned_long_long(unsigned long long n) {
-  struct plm_number num;
+struct plm_number *plm_from_unsigned_long_long(unsigned long long n) {
+  struct plm_number *num = malloc(sizeof(struct plm_number));
 
-  num.sign = 0;
-  num.number_of_decimal_digits = 0;
+  num->sign = 0;
+  num->number_of_decimal_digits = 0;
 
   // Create space for one unsigned long long.
-  num.contents = (unsigned long long *)malloc(sizeof(unsigned long long));
+  num->contents = (unsigned long long *)malloc(sizeof(unsigned long long));
 
   // Set the value.
-  num.contents[0] = (unsigned long long)n;
-  num.contents_length = 1;
+  num->contents[0] = (unsigned long long)n;
+  num->contents_length = 1;
 
   return num;
 }
