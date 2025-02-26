@@ -15,7 +15,7 @@ char *plm_to_base10_string(struct plm_number *n) {
 
   // Calculate the number of digits in the number.
   size_t len_all_digits_combined =
-      floor(1 + log10(n->contents[0])) + 18 * (n->contents_length - 1);
+      floor(1 + log10(n->contents[0])) + 9 * (n->contents_length - 1);
   size_t buffer_len = len_all_digits_combined + n->sign +
                       (n->number_of_decimal_digits > 0) +
                       (n->number_of_decimal_digits == len_all_digits_combined);
@@ -36,7 +36,7 @@ char *plm_to_base10_string(struct plm_number *n) {
 
   // Deal with the decimal digits.
   ull decimal_parts =
-      n->number_of_decimal_digits / 18 + (n->number_of_decimal_digits % 18 > 0);
+      n->number_of_decimal_digits / 9 + (n->number_of_decimal_digits % 9 > 0);
   ull decimal_digits = n->number_of_decimal_digits;
   long long part = 0;
   ull part_i = 0;
@@ -46,7 +46,7 @@ char *plm_to_base10_string(struct plm_number *n) {
     part_i = n->contents_length - i - 1;
     part = n->contents[part_i];
     if (part_i) {
-      while (count < 18 && decimal_digits--) {
+      while (count < 9 && decimal_digits--) {
         str[ptr--] = '0' + part % 10;
         part /= 10;
         ++count;
@@ -73,7 +73,7 @@ char *plm_to_base10_string(struct plm_number *n) {
         part /= 10;
       }
     } else {
-      for (int i = 0; i < 18 - count; ++i) {
+      for (int i = 0; i < 9 - count; ++i) {
         str[ptr--] = '0' + part % 10;
         part /= 10;
       }
@@ -85,7 +85,7 @@ char *plm_to_base10_string(struct plm_number *n) {
     ull index = n->contents_length - i - 1;
     part = n->contents[index];
     if (index) {
-      for (int i = 0; i < 18; ++i) {
+      for (int i = 0; i < 9; ++i) {
         str[ptr--] = '0' + part % 10;
         part /= 10;
       }

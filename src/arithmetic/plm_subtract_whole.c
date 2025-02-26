@@ -4,7 +4,7 @@
 
 #define ull unsigned long long
 
-// Function: plm_add_whole
+// Function: plm_subtract_whole
 // Subtracts two whole numbers
 // Parameters:
 //  a - The first number to subtract
@@ -51,7 +51,7 @@ struct plm_number *plm_subtract_whole(struct plm_number *a,
 
     if (result->contents[result_index] < 0 && a_index != 0) {
       carry = -1;
-      result->contents[result_index] += 1000000000000000000LL;
+      result->contents[result_index] += 1000000000LL;
     } else {
       carry = 0;
     }
@@ -64,7 +64,7 @@ struct plm_number *plm_subtract_whole(struct plm_number *a,
 
     if (result->contents[result_index] < 0 && a_index != 0) {
       carry = -1;
-      result->contents[result_index] += 1000000000000000000LL;
+      result->contents[result_index] += 1000000000LL;
     } else {
       carry = 0;
     }
@@ -79,7 +79,7 @@ struct plm_number *plm_subtract_whole(struct plm_number *a,
     result->contents[i] = -result->contents[i] + carry;
     if (result->contents[i] < 0) {
       carry = -1;
-      result->contents[i] += 1000000000000000000LL;
+      result->contents[i] += 1000000000LL;
     } else {
       carry = 0;
     }

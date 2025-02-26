@@ -51,14 +51,14 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
 
     if (a->contents[a_index] > LLONG_MAX - b->contents[b_index] - carry) {
       carry = 1;
-      result->contents[result_index] -= 1000000000000000000LL;
+      result->contents[result_index] -= 1000000000LL;
     } else {
       carry = 0;
     }
 
-    if (result->contents[result_index] > 999999999999999999LL) {
+    if (result->contents[result_index] > 999999999LL) {
       carry = 1;
-      result->contents[result_index] -= 1000000000000000000LL;
+      result->contents[result_index] -= 1000000000LL;
     }
   }
 
@@ -69,14 +69,14 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
 
     if (a->contents[a_index] > LLONG_MAX - carry) {
       carry = 1;
-      result->contents[result_index] -= 1000000000000000000LL;
+      result->contents[result_index] -= 1000000000LL;
     } else {
       carry = 0;
     }
 
-    if (result->contents[result_index] > 999999999999999999LL) {
+    if (result->contents[result_index] > 999999999LL) {
       carry = 1;
-      result->contents[result_index] -= 1000000000000000000LL;
+      result->contents[result_index] -= 1000000000LL;
     }
   }
 

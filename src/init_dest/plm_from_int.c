@@ -20,12 +20,16 @@ struct plm_number *plm_from_int(int n) {
     n = -n;
   }
 
-  // Create space for one long long.
-  num->contents = (long long *)malloc(sizeof(long long));
-
-  // Set the value.
-  num->contents[0] = (long long)n;
-  num->contents_length = 1;
+  if (n <= 999999999) {
+    num->contents = (long long *)malloc(sizeof(long long));
+    num->contents_length = 1;
+    num->contents[0] = (long long)n;
+  } else {
+    num->contents = (long long *)malloc(sizeof(long long) * 2);
+    num->contents_length = 2;
+    num->contents[0] = (long long)(n / 1000000000);
+    num->contents[1] = (long long)(n % 1000000000);
+  }
 
   return num;
 }

@@ -80,9 +80,9 @@ struct plm_number *plm_from_base10_string(const char *n_in) {
     memmove(n, n + 1, strlen(n));
   }
 
-  // If the number is less than 19 characters, treat it like an unsigned
+  // If the number is less than 10 characters, treat it like an unsigned
   // long long.
-  if (strlen(n) < 19) {
+  if (strlen(n) < 10) {
     number->contents_length = 1;
     number->contents = malloc(sizeof(long long));
     number->contents[0] = strtoull(n, NULL, 10);
@@ -90,9 +90,9 @@ struct plm_number *plm_from_base10_string(const char *n_in) {
     return number;
   }
 
-  // Partition into parts with 18 characters starting from the back.
-  ull mod = strlen(n) % 18;
-  ull number_parts = strlen(n) / 18;
+  // Partition into parts with 9 characters starting from the back.
+  ull mod = strlen(n) % 9;
+  ull number_parts = strlen(n) / 9;
 
   if (!mod) {
     number->contents_length = number_parts;
@@ -100,10 +100,10 @@ struct plm_number *plm_from_base10_string(const char *n_in) {
     for (ull i = 0; i < number_parts; ++i) {
       // Let's hackily set the last character to \0, so that strtoll doesn't
       // convert the entire thing.
-      char temp = n[18 * (i + 1)];
-      n[18 * (i + 1)] = '\0';
-      number->contents[i] = strtoll(n + i * 18, NULL, 10);
-      n[18 * (i + 1)] = temp;
+      char temp = n[9 * (i + 1)];
+      n[9 * (i + 1)] = '\0';
+      number->contents[i] = strtoll(n + i * 9, NULL, 10);
+      n[9 * (i + 1)] = temp;
     }
     free(n);
     return number;
@@ -122,10 +122,10 @@ struct plm_number *plm_from_base10_string(const char *n_in) {
   // But I haven't increased the variable number_parts, just to make the loop
   // more efficient.
   for (ull i = 0; i < number_parts; ++i) {
-    temp = n[mod + 18 * (i + 1)];
-    n[mod + 18 * (i + 1)] = '\0';
-    number->contents[i + 1] = strtoll(n + mod + i * 18, NULL, 10);
-    n[mod + 18 * (i + 1)] = temp;
+    temp = n[mod + 9 * (i + 1)];
+    n[mod + 9 * (i + 1)] = '\0';
+    number->contents[i + 1] = strtoll(n + mod + i * 9, NULL, 10);
+    n[mod + 9 * (i + 1)] = temp;
   }
 
   free(n);

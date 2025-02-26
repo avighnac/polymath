@@ -40,4 +40,11 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b);
 struct plm_number *plm_subtract_whole(struct plm_number *a,
                                       struct plm_number *b);
 
+/// @brief Multiplies two whole polymath numbers and returns the result as a
+/// pointer to a polymath number.
+/// @param a The first polymath number to multiply.
+/// @param b The second polymath number to multiply.
+struct plm_number *plm_multiply_whole(struct plm_number *a,
+                                      struct plm_number *b);
+
 #endif

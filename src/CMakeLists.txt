@@ -19,6 +19,7 @@ set(cross_platform_sources
 
     arithmetic/plm_add_whole.c
     arithmetic/plm_subtract_whole.c
+    arithmetic/plm_multiply_whole.c
 )
 
 # set(linux_sources
