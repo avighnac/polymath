@@ -37,8 +37,8 @@ TEST(add_whole_tests, basic_carry_test) {
   struct plm_number *result = plm_add_whole(a, b);
   ASSERT_EQ(result->sign, 0);
   ASSERT_EQ(result->contents_length, 2);
-  ASSERT_EQ(result->contents[0], 1);
-  ASSERT_EQ(result->contents[1], 2222222222222222221);
+  ASSERT_EQ(result->contents[0], 12);
+  ASSERT_EQ(result->contents[1], 222222222222222221);
   ASSERT_EQ(result->number_of_decimal_digits, 0);
   plm_free(a);
   plm_free(b);
@@ -52,8 +52,8 @@ TEST(add_whole_tests, max_19_digit) {
   struct plm_number *result = plm_add_whole(a, b);
   ASSERT_EQ(result->sign, 0);
   ASSERT_EQ(result->contents_length, 2);
-  ASSERT_EQ(result->contents[0], 1);
-  ASSERT_EQ(result->contents[1], 9999999999999999998);
+  ASSERT_EQ(result->contents[0], 19);
+  ASSERT_EQ(result->contents[1], 999999999999999998);
   ASSERT_EQ(result->number_of_decimal_digits, 0);
   plm_free(a);
   plm_free(b);
@@ -70,10 +70,10 @@ TEST(add_whole_tests, big_test_1) {
   struct plm_number *result = plm_add_whole(a, b);
   ASSERT_EQ(result->sign, 0);
   ASSERT_EQ(result->contents_length, 4);
-  ASSERT_EQ(result->contents[0], 129834691234671);
-  ASSERT_EQ(result->contents[1], 2642136723491245202);
-  ASSERT_EQ(result->contents[2], 8567144487311139925);
-  ASSERT_EQ(result->contents[3], 2434418321346166999);
+  ASSERT_EQ(result->contents[0], 129834691234671264);
+  ASSERT_EQ(result->contents[1], 213672349124520285);
+  ASSERT_EQ(result->contents[2], 671444873111399252);
+  ASSERT_EQ(result->contents[3], 434418321346166999);
   ASSERT_EQ(result->number_of_decimal_digits, 0);
   plm_free(a);
   plm_free(b);

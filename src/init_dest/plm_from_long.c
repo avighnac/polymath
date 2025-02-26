@@ -20,11 +20,11 @@ struct plm_number *plm_from_long(long n) {
     n = -n;
   }
 
-  // Create space for one unsigned long long.
-  num->contents = (unsigned long long *)malloc(sizeof(unsigned long long));
+  // Create space for one long long.
+  num->contents = (long long *)malloc(sizeof(long long));
 
   // Set the value.
-  num->contents[0] = (unsigned long long)n;
+  num->contents[0] = (long long)n;
   num->contents_length = 1;
 
   return num;

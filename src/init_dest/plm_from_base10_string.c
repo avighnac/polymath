@@ -80,52 +80,52 @@ struct plm_number *plm_from_base10_string(const char *n_in) {
     memmove(n, n + 1, strlen(n));
   }
 
-  // If the number is less than 20 characters, treat it like an unsigned
+  // If the number is less than 19 characters, treat it like an unsigned
   // long long.
-  if (strlen(n) < 20) {
+  if (strlen(n) < 19) {
     number->contents_length = 1;
-    number->contents = malloc(sizeof(ull));
+    number->contents = malloc(sizeof(long long));
     number->contents[0] = strtoull(n, NULL, 10);
     free(n);
     return number;
   }
 
-  // Partition into parts with 19 characters starting from the back.
-  ull mod = strlen(n) % 19;
-  ull number_parts = strlen(n) / 19;
+  // Partition into parts with 18 characters starting from the back.
+  ull mod = strlen(n) % 18;
+  ull number_parts = strlen(n) / 18;
 
   if (!mod) {
     number->contents_length = number_parts;
-    number->contents = malloc(sizeof(ull) * number_parts);
+    number->contents = malloc(sizeof(long long) * number_parts);
     for (ull i = 0; i < number_parts; ++i) {
-      // Let's hackily set the last character to \0, so that strtoull doesn't
+      // Let's hackily set the last character to \0, so that strtoll doesn't
       // convert the entire thing.
-      char temp = n[19 * (i + 1)];
-      n[19 * (i + 1)] = '\0';
-      number->contents[i] = strtoull(n + i * 19, NULL, 10);
-      n[19 * (i + 1)] = temp;
+      char temp = n[18 * (i + 1)];
+      n[18 * (i + 1)] = '\0';
+      number->contents[i] = strtoll(n + i * 18, NULL, 10);
+      n[18 * (i + 1)] = temp;
     }
     free(n);
     return number;
   }
 
   number->contents_length = number_parts + 1;
-  number->contents = malloc(sizeof(ull) * (number_parts + 1));
+  number->contents = malloc(sizeof(long long) * (number_parts + 1));
 
   // First part
   char temp = n[mod];
   n[mod] = '\0';
-  number->contents[0] = strtoull(n, NULL, 10);
+  number->contents[0] = strtoll(n, NULL, 10);
   n[mod] = temp;
 
   // Note that the number of parts has technically increased by one.
   // But I haven't increased the variable number_parts, just to make the loop
   // more efficient.
   for (ull i = 0; i < number_parts; ++i) {
-    temp = n[mod + 19 * (i + 1)];
-    n[mod + 19 * (i + 1)] = '\0';
-    number->contents[i + 1] = strtoull(n + mod + i * 19, NULL, 10);
-    n[mod + 19 * (i + 1)] = temp;
+    temp = n[mod + 18 * (i + 1)];
+    n[mod + 18 * (i + 1)] = '\0';
+    number->contents[i + 1] = strtoll(n + mod + i * 18, NULL, 10);
+    n[mod + 18 * (i + 1)] = temp;
   }
 
   free(n);

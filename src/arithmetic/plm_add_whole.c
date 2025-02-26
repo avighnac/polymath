@@ -29,7 +29,7 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
   // Allocate a new number to hold the result.
   ull result_contents_length = (a->contents_length);
   struct plm_number *result = malloc(sizeof(struct plm_number));
-  result->contents = malloc(sizeof(ull) * result_contents_length);
+  result->contents = malloc(sizeof(long long) * result_contents_length);
   result->contents_length = result_contents_length;
   result->number_of_decimal_digits = 0;
   result->sign = 0;
@@ -41,7 +41,7 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
   size_t a_index = a->contents_length - 1;
   size_t b_index = b->contents_length - 1;
   size_t result_index = result_contents_length - 1;
-  ull carry = 0;
+  long long carry = 0;
 
   // First perform the addition for the common parts.
   for (ull i = 0; i < b->contents_length;
@@ -49,16 +49,16 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
     result->contents[result_index] =
         a->contents[a_index] + b->contents[b_index] + carry;
 
-    if (a->contents[a_index] > ULLONG_MAX - b->contents[b_index] - carry) {
+    if (a->contents[a_index] > LLONG_MAX - b->contents[b_index] - carry) {
       carry = 1;
-      result->contents[result_index] -= 10000000000000000000ULL;
+      result->contents[result_index] -= 1000000000000000000LL;
     } else {
       carry = 0;
     }
 
-    if (result->contents[result_index] > 9999999999999999999ULL) {
+    if (result->contents[result_index] > 999999999999999999LL) {
       carry = 1;
-      result->contents[result_index] -= 10000000000000000000ULL;
+      result->contents[result_index] -= 1000000000000000000LL;
     }
   }
 
@@ -67,20 +67,17 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
        ++i, --a_index, --b_index, --result_index) {
     result->contents[result_index] = a->contents[a_index] + carry;
 
-    if (a->contents[a_index] > ULLONG_MAX - carry) {
+    if (a->contents[a_index] > LLONG_MAX - carry) {
       carry = 1;
-      result->contents[result_index] -= 10000000000000000000ULL;
+      result->contents[result_index] -= 1000000000000000000LL;
     } else {
       carry = 0;
     }
 
-    if (result->contents[result_index] > 9999999999999999999ULL) {
+    if (result->contents[result_index] > 999999999999999999LL) {
       carry = 1;
-      result->contents[result_index] -= 10000000000000000000ULL;
+      result->contents[result_index] -= 1000000000000000000LL;
     }
-
-    --a_index;
-    --result_index;
   }
 
   // Check for a final carry, and also that we've not allocated too much / too
@@ -89,9 +86,9 @@ struct plm_number *plm_add_whole(struct plm_number *a, struct plm_number *b) {
     // It's realloc and memmove time!
     ++result->contents_length;
     result->contents =
-        realloc(result->contents, result->contents_length * sizeof(ull));
+        realloc(result->contents, result->contents_length * sizeof(long long));
     memmove(&result->contents[1], result->contents,
-            (result->contents_length - 1) * sizeof(ull));
+            (result->contents_length - 1) * sizeof(long long));
     result->contents[0] = carry;
   }
 

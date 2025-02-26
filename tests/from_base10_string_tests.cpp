@@ -20,9 +20,9 @@ TEST(from_base10_string_tests, more_than_20_digits) {
   ASSERT_EQ(result->sign, 0);
   ASSERT_EQ(result->number_of_decimal_digits, 0);
   ASSERT_EQ(result->contents_length, 3);
-  ASSERT_EQ(result->contents[0], 3163);
-  ASSERT_EQ(result->contents[1], 9812736871268361298ULL);
-  ASSERT_EQ(result->contents[2], 3619783612329871263ULL);
+  ASSERT_EQ(result->contents[0], 316398);
+  ASSERT_EQ(result->contents[1], 127368712683612983LL);
+  ASSERT_EQ(result->contents[2], 619783612329871263LL);
   plm_free(result);
 }
 

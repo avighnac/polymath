@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(polymath_tests)
 
@@ -26,7 +26,9 @@ endif()
 set(test_sources
     from_base10_string_tests.cpp
     to_base10_string_tests.cpp
-    add_whole.cpp
+    add_whole_tests.cpp
+    from_unsigned_long_long_tests.cpp
+    subtract_whole_tests.cpp
 )
 
 add_executable(${PROJECT_NAME} ${test_sources})

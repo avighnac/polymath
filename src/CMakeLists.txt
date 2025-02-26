@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(polymath)
 
@@ -18,6 +18,7 @@ set(cross_platform_sources
     init_dest/plm_free.c
 
     arithmetic/plm_add_whole.c
+    arithmetic/plm_subtract_whole.c
 )
 
 # set(linux_sources
