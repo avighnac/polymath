@@ -1,6 +1,7 @@
 #include <polymath.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 struct plm_number *plm_multiply_whole(struct plm_number *a,
                                       struct plm_number *b) {
