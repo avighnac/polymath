@@ -1,6 +1,7 @@
 #include <polymath.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 struct plm_number *plm_shl(struct plm_number *x, uint64_t y) {
   if (!x) {

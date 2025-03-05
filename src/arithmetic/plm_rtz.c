@@ -1,6 +1,7 @@
 #include <polymath.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 struct plm_number *plm_rtz(struct plm_number *x) {
   if (!x) {
@@ -18,7 +19,7 @@ struct plm_number *plm_rtz(struct plm_number *x) {
 
   uint64_t len = x->contents_length, pow = 1, decimals_removed = 0;
   for (int64_t i = (int64_t)len - 1, j = 0;
-       i >= 0 && j < (x->number_of_decimal_digits + 8) / 9; --i, ++j) {
+       i >= 0 && j < (int64_t)(x->number_of_decimal_digits + 8) / 9; --i, ++j) {
     if (x->contents[i] == 0) {
       len--;
       decimals_removed += 9;

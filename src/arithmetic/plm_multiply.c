@@ -1,6 +1,7 @@
 #include <polymath.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 struct plm_number *plm_multiply(struct plm_number *a, struct plm_number *b) {
   if (a == NULL || b == NULL) {
