@@ -17,9 +17,8 @@ jobs:
         sudo apt-get install valgrind
     - name: Build library and tests
       run: |
-        cmake -DENABLE_TESTS=ON -S . -B build
-        cd build
-        make
+        cmake -DENABLE_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -S . -B build
+        cmake --build build --config Debug -j
     - name: Run tests with valgrind
       run: |
         valgrind --error-exitcode=1 --leak-check=full --track-origins=yes ./build/tests/polymath_tests

@@ -20,6 +20,13 @@ set(cross_platform_sources
     arithmetic/plm_add_whole.c
     arithmetic/plm_subtract_whole.c
     arithmetic/plm_multiply_whole.c
+
+    arithmetic/plm_shl.c
+    arithmetic/plm_shr.c
+    arithmetic/plm_rtz.c
+    arithmetic/plm_multiply.c
+    arithmetic/plm_add.c
+    arithmetic/plm_subtract.c
 )
 
 # set(linux_sources

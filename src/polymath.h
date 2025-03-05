@@ -47,4 +47,33 @@ struct plm_number *plm_subtract_whole(struct plm_number *a,
 struct plm_number *plm_multiply_whole(struct plm_number *a,
                                       struct plm_number *b);
 
+/// @brief Adds two polymath numbers and returns the result as a pointer
+/// to a polymath number.
+/// @param a The first polymath number to add.
+/// @param b The second polymath number to add.
+struct plm_number *plm_add(struct plm_number *a, struct plm_number *b);
+
+/// @brief Subtracts two polymath numbers and returns the result as a pointer
+/// to a polymath number.
+/// @param a The first polymath number to subtract.
+/// @param b The second polymath number to subtract.
+struct plm_number *plm_subtract(struct plm_number *a, struct plm_number *b);
+
+/// @brief Multiplies two polymath numbers and returns the result as a
+/// pointer to a polymath number.
+/// @param a The first polymath number to multiply.
+/// @param b The second polymath number to multiply.
+struct plm_number *plm_multiply(struct plm_number *a, struct plm_number *b);
+
+/// @brief Shifts `x` to the left in base 10 by `y` places. In other words, performs `x` ==> `x * 10^y`.
+/// @param x Returns the shifted number.
+struct plm_number *plm_shl(struct plm_number *x, unsigned long long y);
+
+/// @brief Shifts `x` to the right in base 10 by `y` places. In other words, performs `x` ==> `floor(x / 10^y)`.
+/// @param x Returns the shifted number.
+struct plm_number *plm_shr(struct plm_number *x, unsigned long long y);
+
+/// @brief Removes trailing zeroes from a polymath number: so, for example, `10.0` ==> `10`.
+struct plm_number *plm_rtz(struct plm_number *x);
+
 #endif

@@ -30,6 +30,7 @@ set(test_sources
     from_unsigned_long_long_tests.cpp
     subtract_whole_tests.cpp
     multiply_whole_tests.cpp
+    add_tests.cpp
 )
 
 add_executable(${PROJECT_NAME} ${test_sources})
