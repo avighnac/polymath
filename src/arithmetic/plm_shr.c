@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <stdint.h>
 
-struct plm_number *plm_shr(struct plm_number *x, unsigned long long y) {
+struct plm_number *plm_shr(struct plm_number *x, long long y) {
   if (!x) {
     return NULL;
   }

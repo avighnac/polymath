@@ -35,8 +35,11 @@ set(test_sources
 )
 
 add_executable(${PROJECT_NAME} ${test_sources})
+add_executable(test2 test.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+target_include_directories(test2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 target_link_libraries(${PROJECT_NAME} PRIVATE gtest_main polymath_static m)
+target_link_libraries(test2 PRIVATE polymath_static m)
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})

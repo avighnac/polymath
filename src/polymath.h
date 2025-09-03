@@ -1,6 +1,10 @@
 #ifndef _polymath_h_
 #define _polymath_h_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct plm_number {
   int sign; // 0 for positive, 1 for negative.
   unsigned long long number_of_decimal_digits;
@@ -15,6 +19,7 @@ struct plm_number *plm_from_long(long n);
 struct plm_number *plm_from_long_long(long long n);
 struct plm_number *plm_from_unsigned_long_long(unsigned long long n);
 struct plm_number *plm_from_base10_string(const char *n);
+struct plm_number *plm_from_plm(const struct plm_number *n);
 
 /// @brief Frees the memory allocated to a polymath number.
 /// @param n The polymath number to free, passed as a pointer.
@@ -67,13 +72,17 @@ struct plm_number *plm_multiply(struct plm_number *a, struct plm_number *b);
 
 /// @brief Shifts `x` to the left in base 10 by `y` places. In other words, performs `x` ==> `x * 10^y`.
 /// @param x Returns the shifted number.
-struct plm_number *plm_shl(struct plm_number *x, unsigned long long y);
+struct plm_number *plm_shl(struct plm_number *x, long long y);
 
 /// @brief Shifts `x` to the right in base 10 by `y` places. In other words, performs `x` ==> `floor(x / 10^y)`.
 /// @param x Returns the shifted number.
-struct plm_number *plm_shr(struct plm_number *x, unsigned long long y);
+struct plm_number *plm_shr(struct plm_number *x, long long y);
 
 /// @brief Removes trailing zeroes from a polymath number: so, for example, `10.0` ==> `10`.
 struct plm_number *plm_rtz(struct plm_number *x);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

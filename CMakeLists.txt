@@ -4,7 +4,7 @@ project(polymath)
 
 enable_language(C)
 
-set(ENABLE_TESTS OFF CACHE BOOL "Enable tests")
+set(ENABLE_TESTS ON CACHE BOOL "Enable tests")
 
 add_subdirectory(src)
 

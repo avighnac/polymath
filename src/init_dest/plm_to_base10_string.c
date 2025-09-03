@@ -16,6 +16,10 @@ char *plm_to_base10_string(struct plm_number *n) {
   // Calculate the number of digits in the number.
   size_t len_all_digits_combined =
       floor(1 + log10(n->contents[0])) + 9 * (n->contents_length - 1);
+  // Add space for 0.0000...
+  if (n->number_of_decimal_digits > len_all_digits_combined) {
+    len_all_digits_combined = n->number_of_decimal_digits;
+  }
   size_t buffer_len = len_all_digits_combined + n->sign +
                       (n->number_of_decimal_digits > 0) +
                       (n->number_of_decimal_digits == len_all_digits_combined);

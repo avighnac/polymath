@@ -14,6 +14,7 @@ set(cross_platform_sources
     init_dest/plm_from_long_long.c
     init_dest/plm_from_unsigned_long_long.c
     init_dest/plm_from_base10_string.c
+    init_dest/plm_from_plm.c
     init_dest/plm_to_base10_string.c
     init_dest/plm_free.c
 

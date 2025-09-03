@@ -10,6 +10,9 @@
 // Returns:
 //   Nothing.
 void plm_free(struct plm_number *n) {
+  if (!n) {
+    return;
+  }
   free(n->contents);
   free(n);
 }
