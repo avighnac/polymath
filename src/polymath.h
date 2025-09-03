@@ -81,6 +81,9 @@ struct plm_number *plm_shr(struct plm_number *x, long long y);
 /// @brief Removes trailing zeroes from a polymath number: so, for example, `10.0` ==> `10`.
 struct plm_number *plm_rtz(struct plm_number *x);
 
+/// @brief Returns -1 if `a < b`, 0 if `a == b` and 1 if `a > b`.
+int plm_compare_whole(const struct plm_number *a, const struct plm_number *b);
+
 #ifdef __cplusplus
 }
 #endif

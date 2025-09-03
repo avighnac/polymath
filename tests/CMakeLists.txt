@@ -32,6 +32,7 @@ set(test_sources
     multiply_whole_tests.cpp
     multiply_tests.cpp
     add_tests.cpp
+    subtract_tests.cpp
 )
 
 add_executable(${PROJECT_NAME} ${test_sources})

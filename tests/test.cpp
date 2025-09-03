@@ -1,11 +1,10 @@
 #include <iostream>
 #include <polymath.hpp>
 
+using decimal_t = polymath::decimal;
+
 int main() {
-  using int_t = polymath::integer;
-  int_t a = 2;
-  for (int i = 0; i < 20; ++i) {
-    a *= a;
-  }
-  std::cout << a << std::endl;
+  decimal_t a = "0.2";
+  a <<= 2;
+  std::cout << a << '\n';
 }
