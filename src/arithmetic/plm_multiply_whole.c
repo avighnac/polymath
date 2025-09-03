@@ -12,7 +12,7 @@ struct plm_number *plm_multiply_whole(struct plm_number *a,
   // Allocate a new number to hold the result.
   uint64_t result_contents_length = a->contents_length + b->contents_length;
   struct plm_number *result = malloc(sizeof(struct plm_number));
-  result->contents = malloc(sizeof(long long) * result_contents_length);
+  result->contents = calloc(result_contents_length, sizeof(long long));
   result->contents_length = result_contents_length;
   result->number_of_decimal_digits = 0;
   result->sign = 0;
